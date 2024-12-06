@@ -1,7 +1,6 @@
 # Business Bureau
 
 Inventory and Pricing for Business
+<span style="color: red;">This is red text</span>
+<span style="color: blue;">This is blue text</span>
 
-# Business Bureau
-
-Welcome to <span style="color: blue;">Business Bureau</span>, a platform designed to help businesses grow.
