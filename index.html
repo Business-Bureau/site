@@ -1,490 +1,235 @@
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Bureau</title>
+    <link rel="stylesheet" href="css/index.css">
     <link rel="icon" href="favicon.png" type="image/png" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="discount.js"></script>
-    <style>
-    :root {
-        --bg-primary: #121212;
-        --bg-secondary: #1E1E1E;
-        --accent: #BB86FC;
-        --green: #00CF91;
-        --yellow: #FFB861;
-        --orange: #FF8C42;
-        --red: #FF4B4B;
-        --text: #E1E1E1;
-    }
-    
-    body {
-        background-color: var(--bg-primary);
-        color: var(--text);
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        padding: 20px;
-    }
-    
-    .header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        padding: 2rem;
-        background: var(--bg-secondary);
-        border-radius: 15px;
-        margin-bottom: 2rem;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    
-    .brand-name {
-        font-size: 2.5rem;
-        font-style: italic;
-        text-decoration: underline;
-        text-decoration-style: wavy;
-        text-decoration-thickness: 2px;
-        margin: 0;
-        text-align: center;
-    }
-    
-    .brand-name .business {
-        color: #00CF91;
-    }
-    
-    .brand-name .bureau {
-        color: #4A90E2;
-    }
-    
-    .nav-buttons {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-    
-    .contact-info {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--text);
-        text-decoration: none;
-        font-size: 0.9rem;
-    }
-    
-    .contact-info:hover {
-        color: var(--accent);
-    }
-    
-    .products-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        width: 100%;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-    
-    .product-card {
-        background: var(--bg-secondary);
-        border-radius: 10px;
-        padding: 1.5rem;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        display: grid;
-        gap: 1.5rem;
-    }
-    
-    .product-content {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    .product-image {
-        width: 100%;
-        height: 200px;
-        background: rgba(187, 134, 252, 0.1);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        color: var(--accent);
-        overflow: hidden;
-    }
+  </head>
+  <body>
+    <div class="header">
+      <h1 class="brand-name">
+        <span class="business">Business</span> 
+        <span class="bureau">Bureau</span>
+      </h1>
+      <div class="nav-buttons">
+        <div >
+            <a id="phone-number" class="contact-info">
+          <i class="fas fa-envelope"></i>
+          Click here to order
+          (503) 908-4704
+          <i class="fas fa-envelope"></i>
+        </a>
+    </div>
+      </div>                           
+    </div>
+  
+    <div class="products-grid">
 
-    .product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    
-    .product-details {
-        flex-grow: 1;
-    }
-    
-    .product-description {
-        margin: 0.5rem 0;
-        opacity: 0.8;
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-    
-    .product-header {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: flex-start;
-    }
-    
-    .product-name {
-        font-size: 1.5rem;
-        margin: 0;
-    }
-    
-    .stock-status {
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        font-weight: bold;
-    }
-    
-    .in-stock {
-        background: rgba(0, 207, 145, 0.2);
-        color: var(--green);
-    }
-    
-    .medium-stock {
-        background: rgba(255, 184, 97, 0.2);
-        color: var(--yellow);
-    }
-    
-    .low-stock {
-        background: rgba(255, 140, 66, 0.2);
-        color: var(--orange);
-    }
-    
-    .sold-out {
-        background: rgba(255, 75, 75, 0.2);
-        color: var(--red);
-    }
-    
-    .info-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .info-card {
-        background: rgba(187, 134, 252, 0.1);
-        padding: 1rem;
-        border-radius: 8px;
-    }
-    
-    .info-label {
-        font-size: 0.9rem;
-        opacity: 0.7;
-        margin-bottom: 0.5rem;
-    }
-    
-    .info-value {
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
-    
-    .price-trend {
-        color: var(--green);
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    
-    .price-trend.negative {
-        color: var(--red);
-    }
-    
-    .amount-buttons {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-        margin-top: 1rem;
-    }
-    
-    .amount-group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.25rem;
-    }
-    
-    .amount-btn {
-        background: rgba(187, 134, 252, 0.1);
-        border: none;
-        color: var(--text);
-        padding: 0.5rem;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        width: 100%;
-    }
-    
-    .price-label {
-        font-size: 0.8rem;
-        opacity: 0.8;
-        white-space: nowrap;
-    }
-    
-    .amount-btn:hover {
-        background: rgba(187, 134, 252, 0.2);
-    }
-    
-    .details-section {
-        margin-top: 1rem;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .detail-item {
-        position: relative;
-        background: rgba(187, 134, 252, 0.05);
-        padding: 0.8rem;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        min-height: 60px;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .detail-item i {
-        margin-right: 0.5rem;
-        color: var(--accent);
-        font-size: 1rem;
-    }
-    
-    .delta-effect {
-        font-size: 0.8rem;
-        opacity: 0.7;
-        margin-top: 0.3rem;
-        font-style: italic;
-    }
-    
-    .badge {
-        background: rgba(187, 134, 252, 0.15);
-        color: var(--accent);
-        padding: 0.3rem 0.8rem;
-        border-radius: 12px;
-        font-size: 0.8rem;
-        margin-right: 0.5rem;
-        display: inline-block;
-        margin-top: 0.5rem;
-    }
-
-    @media (min-width: 768px) {
-        .nav-buttons {
-            flex-direction: row;
-        }
-
-        .products-grid {
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        }
-
-        .product-content {
-            flex-direction: row;
-        }
-
-        .product-image {
-            width: 120px;
-            height: 120px;
-        }
-
-        .product-header {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .info-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .amount-buttons {
-            grid-template-columns: repeat(6, 1fr);
-        }
-
-        .details-section {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-    </style>
-    </head>
-    <body>
-        <img src="thumbnail.png" alt="Invisible image" style="opacity: 0; width: 1px; height: 1px;">
-        <div class="header">
-            <h1 class="brand-name">
-                <span class="business">Business</span> 
-                <span class="bureau">Bureau</span>
-            </h1>
-            <div class="nav-buttons">
-                <a href="mailto:bizbure@proton.me" class="contact-info">
-                    <i class="fas fa-envelope"></i>
-                    bizbure@proton.me
-                </a>
-                <a href="mailto:businessbure@gmail.com" class="contact-info">
-                    <i class="fas fa-envelope"></i>
-                    businessbure@gmail.com
-                </a>
+      <div class="product-card">
+        <div class="product-content">
+          <div class="product-image">
+            <img src="icons/eddies2.png" alt="Product Image" />
+          </div>                    
+          <div class="product-details">
+            <div class="product-header">
+              <h2 class="product-name">Sour Belts</h2>
+              <span class="stock-status in-stock">Full Stock</span>
             </div>
-            <a href="data:text/vcard;charset=utf-8,%20BEGIN:VCARD%0AVERSION:3.0%0AFN:Business Bureau%0AEMAIL:businessbure@gmail.com%0APHONE:(503)%20770-8687%0AEND:VCARD" class="contact-info">
-                <i class="fas fa-envelope"></i>
-                (503) 770-8687
-            </a>            
+            <p class="product-description">
+              Somewhat inconsistant mix, high quality and long lasting high.<br>
+              Tasty Sour Belts, wax like aftertaste
+            </p>
+            <span class="badge">Edibles</span>
+            <span class="badge">Delta Munchies</span>
+          </div>
         </div>
+  
+        <div class="details-section">
+          <div class="detail-item">
+            <i class="fas fa-cannabis"></i>
+            Type: Δ8-THC
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-clock"></i>
+            High Duration: 4-8 hours
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-brain"></i>
+            Effects: Relaxation, Focus
+          </div>
         </div>
-    
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-content">
-                    <div class="product-image">
-                        <img src="icons/eddies2.png" alt="Product Image" />
-                    </div>                    
-                    <div class="product-details">
-                        <div class="product-header">
-                            <h2 class="product-name">Delta Munchies</h2>
-                            <span class="stock-status in-stock">Full Stock</span>
-                        </div>
-                        <p class="product-description">
-                            Somewhat inconsistant mix, high quality and long lasting high.<br>
-                            Tasty Sour Belts, wax like aftertaste
-                        </p>
-                        <span class="badge">Edibles</span>
-                        <span class="badge">High Dose</span>
-                    </div>
-                </div>
-    
-                <div class="details-section">
-                    <div class="detail-item">
-                        <i class="fas fa-cannabis"></i>
-                        Type: Δ8-THC
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-clock"></i>
-                        High Duration: 4 hours
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-brain"></i>
-                        Effects: Relaxation, Focus
-                    </div>
-                </div>
-    
-                <div class="info-grid">
-                    <div class="info-card">
-                        <div class="info-label">Price Range</div>
-                        <div class="info-value">$5.00 - $30.00</div>
-                    </div>
-                    <div class="info-card">
-                        <div class="info-label">Available Amounts</div>
-                        <div class="amount-buttons">
-                            <div class="amount-group">
-                                <button class="amount-btn">15mg</button>
-                                <span class="price-label">$5.00</span>
-                            </div>
-                            <div class="amount-group">
-                                <button class="amount-btn">30mg</button>
-                                <span class="price-label">$10.00</span>
-                            </div>
-                            <div class="amount-group">
-                                <button class="amount-btn">45mg</button>
-                                <span class="price-label">$15.00</span>
-                            </div>
-                            <div class="amount-group">
-                                <button class="amount-btn">60mg</button>
-                                <span class="price-label">$20.00</span>
-                            </div>
-                            <div class="amount-group">
-                                <button class="amount-btn">75mg</button>
-                                <span class="price-label">$25.00</span>
-                            </div>
-                            <div class="amount-group">
-                                <button class="amount-btn">90mg</button>
-                                <span class="price-label">$30.00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-label">Price Range</div>
+            <div class="info-value">$5.00 - $30.00</div>
+          </div>
+          <div class="info-card">
+            <div class="info-label">Available Amounts</div>
+            <div class="amount-buttons">
+              <div class="amount-group">
+                <button class="amount-btn">15mg</button>
+                <span class="price-label">$5.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">30mg</button>
+                <span class="price-label">$10.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">45mg</button>
+                <span class="price-label">$15.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">60mg</button>
+                <span class="price-label">$20.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">75mg</button>
+                <span class="price-label">$25.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">90mg</button>
+                <span class="price-label">$30.00</span>
+              </div>
             </div>
-    
-            <div class="product-card">
-                <div class="product-content">
-                    <div class="product-image">
-                        <img src="icons/strain-2.png" alt="Product Image" />
-                    </div>     
-                    <div class="product-details">
-                        <div class="product-header">
-                            <h2 class="product-name">Push Pop</h2>
-                            <span class="stock-status low-stock">Low Stock</span>
-                        </div>
-                        <p class="product-description">
-                            "Push Pop features an extra smooth flavor profile that smells sugary and tastes like milky candy." (Leafly)
+          </div>
+        </div>
+      </div>
+  
+      <div class="product-card">
+        <div class="product-content">
+          <div class="product-image">
+            <img src="icons/Eddiesd9.png" alt="Product Image" />
+          </div>     
+          <div class="product-details">
+            <div class="product-header">
+              <h2 class="product-name">Mango Gummies</h2>
+              <span class="stock-status coming-soon">Coming Soon</span>
+            </div>
+            <p class="product-description">
+              Delta 9 Gummies, 2x more potent than the Delta 8 Sour Strips.
+            </p>
+            <span class="badge">Edibles</span>
+            <span class="badge">Delta Munchies</span>
+          </div>
+        </div>
+  
+        <div class="details-section">
+          <div class="detail-item">
+            <i class="fas fa-cannabis"></i>
+            Type: Type: Δ9-THC
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-clock"></i>
+            High Duration: 6-10 Hours
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-brain"></i>
+            Effects: Euphoric, Relaxed
+          </div>
+        </div>
+  
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-label">Price Range</div>
+            <div class="info-value">$5.00 - $30.00</div>
+          </div>
+          <div class="info-card">
+            <div class="info-label">Available Amounts</div>
+            <div class="amount-buttons">
+              <div class="amount-group">
+                <button class="amount-btn">15mg</button>
+                <span class="price-label">$5.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">30mg</button>
+                <span class="price-label">$10.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">45mg</button>
+                <span class="price-label">$15.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">60mg</button>
+                <span class="price-label">$20.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">75mg</button>
+                <span class="price-label">$25.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">90mg</button>
+                <span class="price-label">$30.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-content">
+          <div class="product-image">
+            <img src="icons/strain-2.png" alt="Product Image" />
+          </div>     
+          <div class="product-details">
+            <div class="product-header">
+              <h2 class="product-name">Push Pop</h2>
+              <span class="stock-status low-stock">Low Stock</span>
+            </div>
+            <p class="product-description">
+              "Push Pop features an extra smooth flavor profile that smells sugary and tastes like milky candy." (Leafly)
+            </p>
+            <span class="badge">Flower</span>
+            <span class="badge">High Grade</span>
+          </div>
+        </div>
+  
+        <div class="details-section">
+          <div class="detail-item">
+            <i class="fas fa-cannabis"></i>
+            Type: indica-dominant (hybrid)
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-clock"></i>
+            High Duration: 4-6 hours
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-brain"></i>
+            Effects: Euphoric, Tingly, Relaxed
+          </div>
+        </div>
+  
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-label">Price Range</div>
+            <div class="info-value">$5.00 - $45.00</div>
+          </div>
+          <div class="info-card">
+            <div class="info-label">Available Amounts</div>
+            <div class="amount-buttons">
+              <div class="amount-group">
+                <button class="amount-btn">2g</button>
+                <span class="price-label">$10.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">3g</button>
+                <span class="price-label">$15.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">4g</button>
+                <span class="price-label">$25.00</span>
+              </div>
+              <div class="amount-group">
+                <button class="amount-btn">5g</button>
+                <span class="price-label">$35.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
 
-                        </p>
-                        <span class="badge">Flower</span>
-                        <span class="badge">High Grade</span>
-                    </div>
-                </div>
-    
-                <div class="details-section">
-                    <div class="detail-item">
-                        <i class="fas fa-cannabis"></i>
-                        Type: indica-dominant (hybrid)
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-clock"></i>
-                        High Duration: 4-6 hours
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-brain"></i>
-                        Effects: Euphoric, Tingly, Relaxed
-                    </div>
-                </div>
-    
-                <div class="info-grid">
-                    <div class="info-card">
-                        <div class="info-label">Price Range</div>
-                        <div class="info-value">$5.00 - $45.00</div>
-                    </div>
-                    <div class="info-card">
-                        <div class="info-label">Available Amounts</div>
-                        <div class="amount-buttons">
-                            <div class="amount-group">
-                                <button class="amount-btn">2g</button>
-                                <span class="price-label">$10.00</span>
-                            </div>
-                            <div class="amount-group">
-                                <button class="amount-btn">3g</button>
-                                <span class="price-label">$15.00</span>
-                            </div>
-                            <div class="amount-group">
-                                <button class="amount-btn">4g</button>
-                                <span class="price-label">$25.00</span>
-                            </div>
-                            <div class="amount-group">
-                                <button class="amount-btn">5g</button>
-                                <span class="price-label">$35.00</span>
-                            </div>
-                            <!--
-                            <div class="amount-group">
-                                <button class="amount-btn">6g</button>
-                                <span class="price-label">$40.00</span>
-                            </div>
-                            
-                            <div class="amount-group">
-                                <button class="amount-btn">7g</button>
-                                <span class="price-label">$45.00</span>
-                            </div>
-                            -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body></html>
+    </div>
+
+    <script src="js/phone.js"></script>
+  </body>
+  </html>
