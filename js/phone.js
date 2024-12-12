@@ -1,24 +1,22 @@
-function saveContactAndText() {
-    // Hardcoding the phone number
+document.addEventListener('DOMContentLoaded', function() {
     const phoneNumber = '5039084704';
-    
-    if ('contacts' in navigator && 'canShare' in navigator) {
-        const contact = {
-            name: 'Business Contact',
-            tel: phoneNumber
-        };
+    const phoneNumberElement = document.getElementById('phone-number');
 
-        navigator.contacts.save(contact)
-            .then(() => {
-                window.location.href = `sms:${phoneNumber}`;
-            })
-            .catch((error) => {
-                console.error('Contact save error:', error);
-                window.location.href = `sms:${phoneNumber}`;
-            });
-    } else {
-        window.location.href = `sms:${phoneNumber}`;
+    function openSMS() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        
+        // Check if the device is iOS
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            window.location.href = `sms:${phoneNumber}`;
+        } 
+        // For Android and other devices
+        else {
+            window.location.href = `sms:${phoneNumber}`;
+        }
     }
-}
 
-document.getElementById('phone-number').addEventListener('click', saveContactAndText);
+    phoneNumberElement.addEventListener('click', function(event) {
+        event.preventDefault();
+        openSMS();
+    });
+});
